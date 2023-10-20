@@ -16,47 +16,48 @@ import SettingsInputComponentIcon from '@mui/icons-material/SettingsInputCompone
 import TimerIcon from '@mui/icons-material/Timer';
 import SettingsIcon from '@mui/icons-material/Settings';
 import PhonelinkSetupIcon from '@mui/icons-material/PhonelinkSetup';
-import { STYLES } from './assets/styles';
+import { STYLES } from '../assets/styles';
+import { Helpers } from '../common/helpers';
 
 const categories = [
   {
-    id: 'View',
+    id: 'view',
     children: [
-      { id: 'Shifts', icon: <PeopleIcon />, active: true },
-      { id: 'People', icon: <DnsRoundedIcon /> },
+      { id: 'shifts', icon: <DnsRoundedIcon /> },
+      { id: 'people', icon: <PeopleIcon /> },
     ],
   },
   {
-    id: 'Settings',
+    id: 'settings',
     children: [
-      { id: 'Rules', icon: <SettingsIcon /> },
+      { id: 'rules', icon: <SettingsIcon /> },
       //   { id: 'Performance', icon: <TimerIcon /> },
       //   { id: 'Test Lab', icon: <PhonelinkSetupIcon /> },
     ],
   },
 ];
 
-export default function Navigator(props: DrawerProps) {
+export default function Navigator({ currentTab, setCurrentTab, ...paperProps }) {
   return (
-    <Drawer variant="permanent" {...props}>
+    <Drawer variant="permanent" {...paperProps}>
       <List disablePadding>
         <ListItem sx={{ ...STYLES.NAVIGATOR_ITEM, ...STYLES.NAVIGATOR_CATEGORY, fontSize: 22, color: '#fff' }}>Shifts Manager</ListItem>
-        {/* <ListItem sx={{ ...STYLES.NAVIGATOR_ITEM, ...STYLES.NAVIGATOR_CATEGORY }}>
+        <ListItem sx={{ ...STYLES.NAVIGATOR_ITEM, ...STYLES.NAVIGATOR_CATEGORY }}>
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
-          <ListItemText>Project Overview</ListItemText>
-        </ListItem> */}
+          <ListItemText>Overview</ListItemText>
+        </ListItem>
         {categories.map(({ id, children }) => (
           <Box key={id} sx={{ bgcolor: '#101F33' }}>
             <ListItem sx={{ py: 2, px: 3 }}>
-              <ListItemText sx={{ color: '#fff' }}>{id}</ListItemText>
+              <ListItemText sx={{ color: '#fff' }}>{Helpers.capitalize(id)}</ListItemText>
             </ListItem>
-            {children.map(({ id: childId, icon, active }) => (
-              <ListItem disablePadding key={childId}>
-                <ListItemButton selected={active} sx={STYLES.NAVIGATOR_ITEM}>
+            {children.map(({ id: childId, icon }) => (
+              <ListItem disablePadding key={childId} onClick={() => setCurrentTab(childId)}>
+                <ListItemButton selected={currentTab === childId} sx={STYLES.NAVIGATOR_ITEM}>
                   <ListItemIcon>{icon}</ListItemIcon>
-                  <ListItemText>{childId}</ListItemText>
+                  <ListItemText>{Helpers.capitalize(childId)}</ListItemText>
                 </ListItemButton>
               </ListItem>
             ))}
