@@ -6,26 +6,24 @@ import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 import { TextField } from '@mui/material';
 
-function CustomDialoger({ isDialogerOpen, setIsDialogerOpen, dialogerFields, dialogerAction }) {
+function CustomDialoger({ isOpened, setIsOpened, fields, action }) {
   const [formData, setFormData] = useState({});
 
   const cleanUpDialoger = () => {
-    setIsDialogerOpen(false);
+    setIsOpened(false);
     setFormData({});
   };
 
-  const closeDialoger = () => cleanUpDialoger();
-
   const saveDialoger = () => {
-    dialogerAction(formData);
+    action(formData);
     cleanUpDialoger();
   };
 
   return (
-    <Dialog open={isDialogerOpen} onClose={closeDialoger}>
+    <Dialog open={isOpened} onClose={cleanUpDialoger}>
       <DialogTitle>Add New Shift</DialogTitle>
       <DialogContent>
-        {dialogerFields.map((field) => (
+        {fields.map((field) => (
           <TextField
             key={field.name}
             name={field.name}
@@ -44,7 +42,7 @@ function CustomDialoger({ isDialogerOpen, setIsDialogerOpen, dialogerFields, dia
         ))}
       </DialogContent>
       <DialogActions>
-        <Button onClick={closeDialoger} color="primary">
+        <Button onClick={cleanUpDialoger} color="primary">
           Cancel
         </Button>
         <Button onClick={saveDialoger} color="primary">

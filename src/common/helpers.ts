@@ -64,5 +64,13 @@ export namespace Helpers {
     return missions;
   };
 
+  export const initializeShifts = (hoursPerShift: number): TShift[] => {
+    const numberOfShifts = 24 / hoursPerShift;
+    return Array(numberOfShifts).fill({}).map((_, index) => ({
+      startTime: new Date().setHours(index * hoursPerShift, 0, 0, 0),
+      people: [],
+    }));
+  };
+
   export const getNumberBetweenTwoValues = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
 }
