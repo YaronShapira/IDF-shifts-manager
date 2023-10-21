@@ -7,5 +7,11 @@ export default defineConfig({
     sourcemap: true,
     minify: false,
   },
+  resolve: {
+    alias: {
+      '@': '/src',
+      // ... possibly other aliases
+    },
+  },
   plugins: [react()],
 });

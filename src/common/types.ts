@@ -4,12 +4,9 @@ export type TShift = {
   people: string[];
 };
 
-export type TGroup = {
-  people: string[];
-};
-
 export type TMission = {
+  name: string;
   hoursPerShift: number;
-  shifts: TShift[];
-  group: TGroup;
+  people: string[];
+  shifts?: TShift[];
 };

@@ -10,12 +10,12 @@ import { THEME } from '../assets/theme';
 import Copyright from '../common/Copyright';
 import PeopleTab from '../tabs/PeopleTab';
 import RulesTab from '../tabs/RulesTab';
-import ShiftsTab from '../tabs/ShiftsTab';
+import MissionsTab from '../tabs/MissionsTab';
 
 const drawerWidth = 256;
 
 const tabToContent: Record<string, JSX.Element> = {
-  shifts: <ShiftsTab />,
+  shifts: <MissionsTab />,
   people: <PeopleTab />,
   rules: <RulesTab />,
 };

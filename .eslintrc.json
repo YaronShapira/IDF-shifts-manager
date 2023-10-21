@@ -14,12 +14,12 @@
     "padding-line-between-statements": [
       "error",
       {
-        "blankLine": "always",
+        "blankLine": "any",
         "prev": ["const", "let", "var", "if", "do", "while", "for", "function"],
         "next": "*"
       },
       {
-        "blankLine": "always",
+        "blankLine": "any",
         "prev": "*",
         "next": ["if", "do", "while", "for", "try", "function"]
       },
@@ -50,6 +50,8 @@
     "no-restricted-syntax": "off",
     "no-underscore-dangle": "off",
     "no-use-before-define": "off",
+    "implicit-arrow-linebreak": "off",
+    "function-paren-newline": "off",
     "import/no-extraneous-dependencies": "off",
     "max-len": "off",
     "no-console": "off",
